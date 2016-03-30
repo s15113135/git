@@ -1,0 +1,46 @@
+1.首先進到git 
+
+2.輸入這兩行設定基本資料
+  $ git config --global user.name "s15113135"
+  $ git config --global user.email "s15113135@stu.edu.tw"
+
+3.檢查ssh keys是否存在
+  $ ls -al ~/.ssh
+
+  沒有 id_rsa 及 id_rsa.pub 則表示 key 不存在
+
+4.生成ssh key 
+  $ ssh-keygen -t rsa -C "s15113135@stu.edu.tw"
+  接著按 Enter 直到結束
+
+5.確認 ssh-agent 是可以用的
+  $ eval $(ssh-agent -s)
+
+6.將 ssh key 添加到 ssh-agent
+  $ ssh-agent ~/.ssh/id_rsa
+
+7.將 ssh key 配置到 github
+  $ clip < ~/.ssh/id_rsa.pub
+
+  接著打開 github > 選擇右上角圖示點擊 > 選擇 Settings > SSH key > New SSH key
+
+  > 接著打開 id_rsa.pub 複製全部 > 貼在 Key 裡頭 > 按下 Add SSH key
+
+8.測試 ssh key 的配置情況
+  $ ssh -t s15113135@stu.edu.tw
+
+9.進行遠端操作
+  $ git remote add origin git@github.com:s15113135/git.git
+
+10.一切設定完成就可以上傳設定值了
+  $ git push origin master
+
+11.接著可以在桌面建一個你的專案資料夾 (ex:git_home)
+   
+12.在 git 進到資料夾中
+   cd Desktop/git_home
+
+13.接著可以執行 clone github 上的專案
+  $ git clone git@github.com:s15113135/git.git
+  
+  你就會在你的資料夾中看見專案內容
